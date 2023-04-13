@@ -23,7 +23,8 @@ void Player::update(float deltaTime){
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
         movements.y += deltaTime * speed;
     }
-    std::cout <<" movements.x " << movements.x << "mov.y " << movements.y << std::endl;
+
+    
     animation.setRow(movements);
     this->setPosition(this->position+movements);
     animation.update(getPosition(), deltaTime);

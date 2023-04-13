@@ -18,5 +18,8 @@ class Player{
         sf::RectangleShape body;
         Position position;
         sf::Text text;
-        float speed = 100.0;
+        float speed = 500.0;
+    
+    public:
+        bool Change_Map = false;
 };

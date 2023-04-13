@@ -2,7 +2,7 @@
 #include <iostream>
 #include "headers/global.hpp"
 #include "headers/player.hpp"
-
+#include "headers/mapManager.hpp"
 
 int main(){
     //////////////////// start render Data
@@ -28,7 +28,13 @@ int main(){
         sf::Vector2u playerImageCount(4,3);   
         Player player(playerTexture, text, {CELL_SIZE, 2* CELL_SIZE}, playerImageCount);
     //////////////////// end player constructor
-
+    
+    /////////////////// start Map constructor
+        sf::Image mapImage;
+        mapImage.loadFromFile("assets/maps/start.png");
+        MapManager mapManager;
+        mapManager.convertSketch(mapImage, player);
+    /////////////////// end Map constructor
 
 
 
@@ -49,6 +55,20 @@ int main(){
             player.update(deltaTime);
         ////////////////////END UPDATE SPRITES//////////
 
+        ////////////////////START MAP UPDATES//////////
+            if(player.Change_Map){
+                player.Change_Map = false;
+                int level = mapManager.getCurrentLevel();
+                mapImage.loadFromFile("assets/maps/level" + std::to_string(level) + ".png");
+                mapManager.convertSketch( mapImage, player);
+            }
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)){
+                player.Change_Map = true;
+                sf::sleep(sf::milliseconds(100));
+            }
+        ////////////////////END MAP UPDATES////////////
+
+
         ////////////////////START SETTING POSITIONS//////////
             playerPos = player.getPosition();
             view.reset({playerPos.x - (WINDOW_WIDTH * CELL_SIZE)/2,
@@ -60,6 +80,7 @@ int main(){
 
         ////////////////////START RENDER WINDOW//////////
             window.clear();
+            mapManager.drawMap(window, playerPos);
             player.draw(window);
             window.display();
         ////////////////////END RENDER WINDOW//////////

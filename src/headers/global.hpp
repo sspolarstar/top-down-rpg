@@ -10,10 +10,21 @@ constexpr unsigned char RIGHT = 1;
 constexpr unsigned char UP    = 2;
 constexpr unsigned char DOWN  = 3;
 
+constexpr unsigned int MAP_HEIGHT = 300;
+constexpr unsigned int MAP_WIDTH = 300;
+
+constexpr unsigned char REGULAR_FONT = 14;
+constexpr unsigned char TEXT_FONT    = 20;
+constexpr unsigned char MENU_FONT    = 28;
 
 
+enum class Cell{
+    path,
+    wall,
+    empty,
+};
 
-
+typedef std::vector<std::vector<Cell>> Map;
 
 struct Position{
     float x, y;
@@ -30,7 +41,9 @@ struct Position{
         setPosition({x,y});
     }
     bool operator==(Position target){
-        return (this->x==target.x && this->y==target.y);        
+        bool check_x = this->x >= (target.x - 0.5f) && this->x <= (target.x + 0.5);
+        bool check_y = this->y >= (target.y - 0.5f) && this->y <= (target.y + 0.5);
+        return (check_x && check_y);        
     }
     Position operator+(Position target){
         this->x += target.x;
