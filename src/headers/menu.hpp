@@ -4,7 +4,7 @@
 
 class Menu{
     public:
-        Menu();
+        Menu(sf::Text& text);
     
     public:
         void presentMenu(sf::RenderWindow& window);
@@ -12,4 +12,5 @@ class Menu{
     private:
         sf::Text text;
         bool menuActive = true;
+        sf::RectangleShape background, button, textbox;
 };

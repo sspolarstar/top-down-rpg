@@ -3,11 +3,14 @@
 #include "headers/global.hpp"
 #include "headers/player.hpp"
 #include "headers/mapManager.hpp"
-
+#include "headers/menu.hpp"
 int main(){
     //////////////////// start render Data
-        sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH*CELL_SIZE, WINDOW_HEIGHT*CELL_SIZE), "placeholder");
+        sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH*CELL_SIZE, WINDOW_HEIGHT*CELL_SIZE), "Cherrish", sf::Style::Default | sf::Style::Fullscreen);
+        sf::WindowHandle handle = window.getSystemHandle();
+        window.setPosition({0,30});
         window.setFramerateLimit(30);  
+        window.setVerticalSyncEnabled(true);
         sf::View view({0,0,WINDOW_WIDTH*CELL_SIZE, WINDOW_HEIGHT*CELL_SIZE});
         sf::Clock clock;
         float deltaTime = 0.0;
@@ -37,7 +40,11 @@ int main(){
     /////////////////// end Map constructor
 
 
+    /////////////////// Start Menu
 
+        Menu menu(text);
+        menu.presentMenu(window);
+    /////////////////// End Menu
 
 
 //=================================== START LOOP =========================================

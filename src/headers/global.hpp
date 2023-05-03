@@ -19,9 +19,11 @@ constexpr unsigned char MENU_FONT    = 28;
 
 
 enum class Cell{
+    invalid,
     path,
     wall,
     empty,
+
 };
 
 typedef std::vector<std::vector<Cell>> Map;
