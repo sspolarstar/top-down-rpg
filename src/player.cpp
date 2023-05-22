@@ -48,5 +48,5 @@ void Player::setPosition(Position pos){
 
 void Player::draw(sf::RenderWindow &window){
     window.draw(this->body);
-    animation.draw(window);
+    //animation.draw(window);
 }
