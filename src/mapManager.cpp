@@ -17,6 +17,9 @@ void MapManager::convertSketch(sf::Image& mapRef, Player& player){
             if(pixel == sf::Color(255,255,255)){
                 this->map[x][y] = Cell::path;     
             }
+            else if(pixel == sf::Color(0, 130, 60 )){ //00823c
+                this->map[x][y] = Cell::wall;
+            }
             else if(pixel == sf::Color( 0, 0, 0, 0 )){
                 this->map[x][y] = Cell::empty;
             }
@@ -24,7 +27,7 @@ void MapManager::convertSketch(sf::Image& mapRef, Player& player){
                 player.setPosition({(float)x * CELL_SIZE, (float)y * CELL_SIZE});
             }
             else{
-                this->map[x][y] = Cell::wall;
+                this->map[x][y] = Cell::invalid;
                 std::cout << std::endl << "weird color with RGBA = " << (float)pixel.r << ", " << (float)pixel.g <<", " <<(float)pixel.b <<", "<<(float)pixel.a <<"."<< std::endl;
             }
 

@@ -2,5 +2,5 @@
 cd src/
 rm main
 make
-#rm *.o
+rm *.o
 ./main

@@ -4,9 +4,11 @@
 #include "headers/player.hpp"
 #include "headers/mapManager.hpp"
 #include "headers/menu.hpp"
+#include "headers/collider.hpp"
 int main(){
+
     //////////////////// start render Data
-        sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH*CELL_SIZE, WINDOW_HEIGHT*CELL_SIZE), "Cherrish", sf::Style::Default | sf::Style::Fullscreen);
+        sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH*CELL_SIZE, WINDOW_HEIGHT*CELL_SIZE), "Cherrish", sf::Style::Default);
         sf::WindowHandle handle = window.getSystemHandle();
         window.setPosition({0,30});
         window.setFramerateLimit(30);  
@@ -59,7 +61,7 @@ int main(){
 
         ////////////////////START UPDATE SPRITES//////////
             deltaTime = clock.restart().asSeconds();
-            player.update(deltaTime);
+            player.update(deltaTime, mapManager.getMap() );
         ////////////////////END UPDATE SPRITES//////////
 
         ////////////////////START MAP UPDATES//////////

@@ -1,4 +1,5 @@
 #include "headers/player.hpp"
+#include "headers/collider.hpp"
 #include <iostream>
 Player::Player(sf::Texture& texture, sf::Text &text, sf::Vector2f size, sf::Vector2u imageCount):
 animation(texture, imageCount, 0.2f){
@@ -7,21 +8,26 @@ animation(texture, imageCount, 0.2f){
     this->body.setPosition({0.0,0.0});
 }
 
-void Player::update(float deltaTime){
-
+void Player::update(float deltaTime, Map map){
+    //get collider
+    Collision collision = getMapCollision(this->getPosition(), this->speed, deltaTime, map);
     //movements
     Position movements;
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
-        movements.x -= deltaTime * speed;
+        if(!collision.wall[LEFT])
+            movements.x -= deltaTime * speed;
     }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
-        movements.x += deltaTime * speed;
+        if(!collision.wall[RIGHT])
+            movements.x += deltaTime * speed;
     }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::W)){
-        movements.y -= deltaTime * speed;
+        if(!collision.wall[UP])
+            movements.y -= deltaTime * speed;
     }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
-        movements.y += deltaTime * speed;
+        if(!collision.wall[DOWN])
+            movements.y += deltaTime * speed;
     }
 
     

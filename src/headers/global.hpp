@@ -28,6 +28,13 @@ enum class Cell{
 
 typedef std::vector<std::vector<Cell>> Map;
 
+struct Collision{
+    bool wall[4];
+    //bool 
+
+};
+
+
 struct Position{
     float x, y;
     Position(){
