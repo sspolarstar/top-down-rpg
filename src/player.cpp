@@ -6,9 +6,14 @@ animation(texture, imageCount, 0.2f){
     this->text = text;
     this->body.setSize(size);
     this->body.setPosition({0.0,0.0});
+    this->body.setOutlineColor({255,0,0});
+    this->body.setOutlineThickness(1);
+    this->body.setFillColor({0,0,0,0});
 }
 
 void Player::update(float deltaTime, Map map){
+    // this->body.setOutlineColor({255,0,0});
+    // this->body.setOutlineThickness(10);
     //get collider
     Collision collision = getMapCollision(this->getPosition(), this->speed, deltaTime, map);
     //movements
@@ -42,5 +47,6 @@ void Player::setPosition(Position pos){
 }
 
 void Player::draw(sf::RenderWindow &window){
+    window.draw(this->body);
     animation.draw(window);
 }

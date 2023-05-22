@@ -31,7 +31,7 @@ int main(){
         sf::Texture playerTexture;
         playerTexture.loadFromFile("assets/img/player.png");
         sf::Vector2u playerImageCount(4,3);   
-        Player player(playerTexture, text, {CELL_SIZE, 2* CELL_SIZE}, playerImageCount);
+        Player player(playerTexture, text, {PLAYER_WIDTH, PLAYER_HEIGHT}, playerImageCount);
     //////////////////// end player constructor
     
     /////////////////// start Map constructor

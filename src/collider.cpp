@@ -23,21 +23,34 @@ Collision getMapCollision(Position pos, float speed, float deltaTime, Map map){
         case LEFT:
             //cell left of position is at floor(pos.x)/CELL_SIZE
             //reference collisions from the bottom layer
-            checkCell = {floor((pos.x - maxDistance)/CELL_SIZE), ceil(pos.y/CELL_SIZE)};
+            checkCell = {static_cast<int>((pos.x - 3) / CELL_SIZE),
+                         static_cast<int>((pos.y + PLAYER_HEIGHT) / CELL_SIZE)};
             break;
         case RIGHT: 
-            checkCell = {ceil((pos.x + maxDistance)/CELL_SIZE), ceil(pos.y/CELL_SIZE)};
+            checkCell = {static_cast<int>((pos.x + 3 + PLAYER_WIDTH) / CELL_SIZE),
+                         static_cast<int>((pos.y + PLAYER_HEIGHT) / CELL_SIZE)};
+            break;
         case UP:
             //Check from the center of the player
-            checkCell = {(pos.x + CELL_SIZE/2)/CELL_SIZE, floor((pos.y - maxDistance)/CELL_SIZE)};
+            checkCell = {static_cast<int>((pos.x - 2) / CELL_SIZE),
+                         static_cast<int>((pos.y - 4) / CELL_SIZE)};
+            break;
         case DOWN:
-            checkCell = {(pos.x + CELL_SIZE/2)/CELL_SIZE, ceil((pos.y+ maxDistance)/CELL_SIZE)};
+            checkCell = {static_cast<int>((pos.x - 2) / CELL_SIZE),
+                         static_cast<int>((pos.y + (PLAYER_HEIGHT) + 3) / CELL_SIZE)};
+        
+            if(pos.y + 20 >= 0 && pos.y < 0){
+					checkCell.y = 0;
+				}
+            break;
         default:
             break;
         }
     collision.wall[a] = (map[checkCell.x][checkCell.y] == Cell::wall);  
 
     }
+    // std::cout<< collision.wall[0] << " " << collision.wall[1] << " "
+    //          << collision.wall[2] << " " << collision.wall[3] << std::endl;
     return collision;
 }
 

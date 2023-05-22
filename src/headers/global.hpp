@@ -5,13 +5,16 @@ constexpr unsigned char CELL_SIZE     = 16;
 constexpr unsigned char WINDOW_HEIGHT = 45;
 constexpr unsigned char WINDOW_WIDTH  = 80;
 
+constexpr unsigned char PLAYER_HEIGHT = 32;
+constexpr unsigned char PLAYER_WIDTH  = 16;
+
 constexpr unsigned char LEFT  = 0;
 constexpr unsigned char RIGHT = 1;
 constexpr unsigned char UP    = 2;
 constexpr unsigned char DOWN  = 3;
 
 constexpr unsigned int MAP_HEIGHT = 300;
-constexpr unsigned int MAP_WIDTH = 300;
+constexpr unsigned int MAP_WIDTH  = 300;
 
 constexpr unsigned char REGULAR_FONT = 14;
 constexpr unsigned char TEXT_FONT    = 20;
